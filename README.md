@@ -1,14 +1,15 @@
 # Real-Time AI Basketball Shot Detection with YOLOv8 and OpenCV
-
+Author: Avi Shah
 ## Introduction
 
-Welcome to the real-time basketball shot detection/tracker project! This project utilizes a custom-trained machine learning model, YOLOv8 (You Only Look Once), and OpenCV for processing video feed. The program is designed to detect and analyze shots during a live basketball game, offering an immersive playing experience and valuable insights for players and coaches. With capability to process a video stream in real-time, this project can be used with live camera feed such as from a webcam or streamed from an iPhone.
+This project combines the power of Machine Learning and Computer Vision for the purpose of detecting and analyzing basketball shots in real-time! Built upon the latest YOLOv8 (You Only Look Once) machine learning model and the OpenCV library, the program can process video streams from various sources, such as live webcam feed or pre-recorded videos, providing a tool that can be used for enhanced game analytics and an immersive playing experience.
 
-https://github.com/avishah3/AI-Basketball-Shot-Detector-Tracker/assets/115107522/3f50e1e2-313c-401a-b8a7-f425c1250f16
+https://github.com/avishah3/AI-Basketball-Shot-Detector-Tracker/assets/115107522/88014ee1-e125-4b7a-86bc-a10b2caa528c
+
 
 ## Model Training
 
-The model training leverages the ultralytics YOLO implementation, with the model undergoing 100 epochs of training on a custom dataset specified in the 'config.yaml' file. The weights of the best-performing model during training are saved in the 'runs/detect/train/weights' directory as 'best.pt'. This model consists of two objects (basketball and basketball hoop) and worked with decent consistency for me. However, it is not perfect and a different dataset or training method might be better for your project.
+The training process utilizes the ultralytics YOLO implementation and a custom dataset specified in the 'config.yaml' file. The model undergoes a set number of training epochs, with the resulting weights of the best-performing model saved for subsequent usage in shot detection. Although this model worked for my usage, a different dataset or training method might work better for your specific project.
 
 ## Algorithm
 
