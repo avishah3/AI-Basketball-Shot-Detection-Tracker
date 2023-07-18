@@ -1,5 +1,5 @@
 # Real-Time AI Basketball Shot Detection with YOLOv8 and OpenCV
-Author: Avi Shah
+Author: Avi Shah (https://www.linkedin.com/in/-avishah/)
 ## Introduction
 
 This project combines the power of Machine Learning and Computer Vision for the purpose of detecting and analyzing basketball shots in real-time! Built upon the latest YOLOv8 (You Only Look Once) machine learning model and the OpenCV library, the program can process video streams from various sources, such as live webcam feed or pre-recorded videos, providing a tool that can be used for enhanced game analytics and an immersive playing experience.
