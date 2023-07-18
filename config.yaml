@@ -2,8 +2,8 @@ train: ...\train\images
 val: ...\valid\images
 test: ...\test\images
 
-# replace '...' with your absolute paths
-# download the dataset I used here: https://universe.roboflow.com/034-ganesh-kumar-m-v-cs-r2lwe/basketball-lhqoe/dataset/1
+# replace '...' with your local absolute paths
+# download the dataset used here: https://universe.roboflow.com/034-ganesh-kumar-m-v-cs-r2lwe/basketball-lhqoe/dataset/1
 
 nc: 2
 names: ['Basketball', 'Basketball Hoop']
