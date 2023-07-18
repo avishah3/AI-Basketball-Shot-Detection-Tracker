@@ -18,7 +18,7 @@ class ShotDetector:
         # self.cap = cv2.VideoCapture(0)
 
         # Use video - replace text with your video path
-        self.cap = cv2.VideoCapture("video_test.mp4")
+        self.cap = cv2.VideoCapture("video_test_5.mp4")
 
         self.ball_pos = []  # array of tuples ((x_pos, y_pos), frame count, width, height, conf)
         self.hoop_pos = []  # array of tuples ((x_pos, y_pos), frame count, width, height, conf)
@@ -70,7 +70,7 @@ class ShotDetector:
                     center = (int(x1 + w / 2), int(y1 + h / 2))
 
                     # Only create ball points if high confidence or near hoop
-                    if (conf > .4 or (in_hoop_region(center, self.hoop_pos) and conf > 0.15)) and current_class == "Basketball":
+                    if (conf > .3 or (in_hoop_region(center, self.hoop_pos) and conf > 0.15)) and current_class == "Basketball":
                         self.ball_pos.append((center, self.frame_count, w, h, conf))
                         cvzone.cornerRect(self.frame, (x1, y1, w, h))
 

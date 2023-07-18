@@ -6,25 +6,26 @@ def score(ball_pos, hoop_pos):
     # Finds relevant ball data points and plots x and y
     x = []
     y = []
-    max_height = hoop_pos[-1][0][1] - 1.5 * hoop_pos[-1][3]
+    rim_height = hoop_pos[-1][0][1] - 0.5 * hoop_pos[-1][3]
+    # get first point below rim and first point above rim
     for i in reversed(range(len(ball_pos))):
-        if ball_pos[i][0][1] > max_height:
+        if ball_pos[i][0][1] < rim_height:
+            x.append(ball_pos[i+1][0][0])
+            y.append(ball_pos[i+1][0][1])
             x.append(ball_pos[i][0][0])
             y.append(ball_pos[i][0][1])
-        else:
             break
 
-    # Create a linear trend-line that fits the relevant data
+    # Create line from two points
     if len(x) > 1:
         m, b = np.polyfit(x, y, 1)
         print(x, y)
         # Checks if projected line fits between the ends of the rim {x = (y-b)/m}
         predicted_x = ((hoop_pos[-1][0][1] - 0.5*hoop_pos[-1][3]) - b)/m
-        rim_x1 = hoop_pos[-1][0][0] - 0.5 * hoop_pos[-1][2]
-        rim_x2 = hoop_pos[-1][0][0] + 0.5 * hoop_pos[-1][2]
+        rim_x1 = hoop_pos[-1][0][0] - 0.4 * hoop_pos[-1][2]
+        rim_x2 = hoop_pos[-1][0][0] + 0.4 * hoop_pos[-1][2]
         if rim_x1 < predicted_x < rim_x2:
             return True
-    return False
 
 
 # Detects if the ball is below the net - used to detect shot attempts
