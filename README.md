@@ -8,9 +8,7 @@ https://github.com/avishah3/AI-Basketball-Shot-Detector-Tracker/assets/115107522
 
 ## Model Training
 
-The model training leverages the ultralytics YOLO implementation, with the model undergoing 100 epochs of training on a custom dataset specified in the 'config.yaml' file. The weights of the best-performing model during training are saved in the 'runs/detect/train/weights' directory as 'best.pt'. This model consists of two objects (basketball and basketball hoop) and the confusion matrix is shown below. Although this model worked for me, it is not perfect and a different dataset or training method might be better for your project.
-
-![confusion_matrix](https://github.com/avishah3/AI-Basketball-Shot-Detector-Tracker/assets/115107522/21588948-72ab-438a-b08d-6d7a738e6c0f)
+The model training leverages the ultralytics YOLO implementation, with the model undergoing 100 epochs of training on a custom dataset specified in the 'config.yaml' file. The weights of the best-performing model during training are saved in the 'runs/detect/train/weights' directory as 'best.pt'. This model consists of two objects (basketball and basketball hoop) and worked with decent consistency for me. However, it is not perfect and a different dataset or training method might be better for your project.
 
 ## Algorithm
 
