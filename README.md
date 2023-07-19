@@ -3,7 +3,6 @@ Author: [Avi Shah](https://www.linkedin.com/in/-avishah/) (2023)
 
 Score detection accuracy: 95% <br>
 Shot detection accuracy: 97% <br>
-See the disclaimer at the bottom for more information on the videos used for testing <br>
 
 https://github.com/avishah3/AI-Basketball-Shot-Detector-Tracker/assets/115107522/469750e1-0f3c-4b07-9fc5-5387831742f7
 
@@ -32,4 +31,6 @@ A linear regression is used to predict the ball's trajectory based on its positi
 
 Please ensure you have the required Python packages installed, including OpenCV, numpy, and ultralytics' YOLO. Contributions to this project are welcome - submit a pull request. For issues or suggestions, open an issue in this repository.
 
-**Disclaimer:** The model's performance can vary based on factors such as the quality of the video feed, lighting conditions, and the clarity of the basketball and hoop in the video. Furthermore, this program will not work if multiple basketballs and hoops are in frame.
+## Disclaimer
+
+The model's performance can vary based on factors such as the quality of the video feed, lighting conditions, and the clarity of the basketball and hoop in the video. Furthermore, this program will **not** work if multiple basketballs and hoops are in frame. For testing, this program had input videos that were shot outdoors from a phone camera on the ground.
