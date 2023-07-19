@@ -7,13 +7,13 @@ def score(ball_pos, hoop_pos):
     y = []
     rim_height = hoop_pos[-1][0][1] - 0.5 * hoop_pos[-1][3]
 
-    # Get first point below rim and first point above rim
+    # Get first point above rim and first point below rim
     for i in reversed(range(len(ball_pos))):
         if ball_pos[i][0][1] < rim_height:
-            x.append(ball_pos[i+1][0][0])
-            y.append(ball_pos[i+1][0][1])
             x.append(ball_pos[i][0][0])
             y.append(ball_pos[i][0][1])
+            x.append(ball_pos[i+1][0][0])
+            y.append(ball_pos[i+1][0][1])
             break
 
     # Create line from two points
