@@ -1,8 +1,8 @@
 # Real-Time AI Basketball Shot Detection with YOLOv8 and OpenCV
 Author: [Avi Shah](https://www.linkedin.com/in/-avishah/) (2023)
 
-Score detection accuracy: 95% <br>
-Shot detection accuracy: 97% <br>
+Score Detection Accuracy: 95% <br>
+Shot Detection Accuracy: 97% <br>
 
 https://github.com/avishah3/AI-Basketball-Shot-Detector-Tracker/assets/115107522/469750e1-0f3c-4b07-9fc5-5387831742f7
 
