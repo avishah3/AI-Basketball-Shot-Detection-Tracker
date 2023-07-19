@@ -3,11 +3,11 @@ import numpy as np
 
 
 def score(ball_pos, hoop_pos):
-    # Finds relevant ball data points and plots x and y
     x = []
     y = []
     rim_height = hoop_pos[-1][0][1] - 0.5 * hoop_pos[-1][3]
-    # get first point below rim and first point above rim
+
+    # Get first point below rim and first point above rim
     for i in reversed(range(len(ball_pos))):
         if ball_pos[i][0][1] < rim_height:
             x.append(ball_pos[i+1][0][0])
