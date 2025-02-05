@@ -21,8 +21,9 @@ def score(ball_pos, hoop_pos):
         if ball_pos[i][0][1] < rim_height:
             x.append(ball_pos[i][0][0])
             y.append(ball_pos[i][0][1])
-            x.append(ball_pos[i+1][0][0])
-            y.append(ball_pos[i+1][0][1])
+            if i + 1 < len(ball_pos):
+                x.append(ball_pos[i + 1][0][0])
+                y.append(ball_pos[i + 1][0][1])
             break
 
     # Create line from two points
