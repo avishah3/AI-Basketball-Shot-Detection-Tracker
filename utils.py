@@ -12,23 +12,6 @@ def get_device():
         device = 'cpu'
     return device
 
-def simulate_rebound_path(ball_pos, hoop_pos):
-    # Simplified rebound physics (e.g., basic reflection model)
-    rebound_angle = 45  # Hypothetical angle of rebound
-    rebound_speed = 1.5  # Adjusted speed after impact
-
-    last_pos = ball_pos[-1][0]  # Last known ball position
-    x, y = last_pos[0], last_pos[1]
-
-    # Simulate the rebound trajectory
-    for i in range(10):  # Simulate 10 frames of rebound
-        x += rebound_speed * math.cos(math.radians(rebound_angle))
-        y -= rebound_speed * math.sin(math.radians(rebound_angle))
-
-        # Check if the ball is near the hoop area
-        if in_hoop_region((x, y), hoop_pos):
-            return True
-    return False
 
 def score(ball_pos, hoop_pos):
     x = []

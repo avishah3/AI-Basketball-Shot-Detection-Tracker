@@ -5,12 +5,13 @@ import cv2
 import cvzone
 import math
 import numpy as np
-from utils import score, detect_down, detect_up, in_hoop_region, clean_hoop_pos, clean_ball_pos, get_device, simulate_rebound_path
+from utils import score, detect_down, detect_up, in_hoop_region, clean_hoop_pos, clean_ball_pos, get_device
 
 
 class ShotDetector:
     def __init__(self):
         # Load the YOLO model created from main.py - change text to your relative path
+        self.overlay_text = "Waiting..."
         self.model = YOLO("best.pt")
         # Model halving accelerates inference. If not required, please comment on this line
         self.model.half()
@@ -126,18 +127,16 @@ class ShotDetector:
                     self.up = False
                     self.down = False
 
-                    # If it is a make, put a green overlay
+                    # If it is a make, put a green overlay and display "完美"
                     if score(self.ball_pos, self.hoop_pos):
                         self.makes += 1
-                        self.overlay_color = (0, 255, 0)
+                        self.overlay_color = (0, 255, 0)  # Green for perfect
+                        self.overlay_text = "Perfect!"
                         self.fade_counter = self.fade_frames
-                    # If it's a miss, check if it's a "rebound" shot after hitting the rim
-                    elif simulate_rebound_path(self.ball_pos, self.hoop_pos):  # Simulate rebound path
-                        self.makes += 1  # Count it as a make
-                        self.overlay_color = (0, 255, 0)  # Green for make
-                        self.fade_counter = self.fade_frames
+
                     else:
-                        self.overlay_color = (0, 0, 255)  # Red for miss
+                        self.overlay_color = (255, 0, 0)  # Red for miss
+                        self.overlay_text = "Miss"
                         self.fade_counter = self.fade_frames
 
     def display_score(self):
@@ -145,6 +144,18 @@ class ShotDetector:
         text = str(self.makes) + " / " + str(self.attempts)
         cv2.putText(self.frame, text, (50, 125), cv2.FONT_HERSHEY_SIMPLEX, 3, (255, 255, 255), 6)
         cv2.putText(self.frame, text, (50, 125), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 0, 0), 3)
+
+        # Add overlay text for shot result if it exists
+        if hasattr(self, 'overlay_text'):
+            # Calculate text size to position it at the right top corner
+            (text_width, text_height), _ = cv2.getTextSize(self.overlay_text, cv2.FONT_HERSHEY_SIMPLEX, 3, 6)
+            text_x = self.frame.shape[1] - text_width - 40  # Right alignment with some margin
+            text_y = 100  # Top margin
+
+            # Display overlay text with color (overlay_color)
+            cv2.putText(self.frame, self.overlay_text, (text_x, text_y), cv2.FONT_HERSHEY_SIMPLEX, 3,
+                        self.overlay_color, 6)
+            # cv2.putText(self.frame, self.overlay_text, (text_x, text_y), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 0, 0), 3)
 
         # Gradually fade out color after shot
         if self.fade_counter > 0:
