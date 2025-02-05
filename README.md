@@ -10,6 +10,23 @@ https://github.com/avishah3/AI-Basketball-Shot-Detector-Tracker/assets/115107522
 
 This project combines the power of Machine Learning and Computer Vision for the purpose of detecting and analyzing basketball shots in real-time! Built upon the latest YOLOv8 (You Only Look Once) machine learning model and the OpenCV library, the program can process video streams from various sources, such as live webcam feed or pre-recorded videos, providing a tool that can be used for an immersive playing experience and enhanced game analytics.
 
+## Language
+- [English](README.md)
+- [中文](README-zh.md)
+
+## Directory Structure
+
+```
+├── README.md
+├── best.pt             # Trained model
+├── config.yaml         # Dataset configuration
+├── main.py             # YoloV8 training script
+├── requirements.txt
+├── shot_detector.py    # Hit detection core program
+├── utils.py
+└── video_test_5.mp4    # Video for testing purposes
+```
+
 ## Model Training
 
 The training process utilizes the ultralytics YOLO implementation and a custom dataset specified in the 'config.yaml' file. The model undergoes a set number of training epochs, with the resulting weights of the best-performing model saved for subsequent usage in shot detection. Although this model worked for my usage, a different dataset or training method might work better for your specific project.
@@ -28,7 +45,7 @@ A linear regression is used to predict the ball's trajectory based on its positi
 2. Download the dataset specified in 'config.yaml' and adjust the paths in the configuration file to match your local setup.
 3. Follow the instructions in 'main.py' to train the model and prepare for shot detection.
 4. Run 'shot_detector.py' through your webcam or iPhone for real-time shot detection. Or input a video for shot detection analysis.
-
+5. If you don't want to train the model yourself, please use the 'best. pth' model that has already been trained in the root directory
 Please ensure you have the required Python packages installed, including OpenCV, numpy, and ultralytics' YOLO. Contributions to this project are welcome - submit a pull request. For issues or suggestions, open an issue in this repository.
 
 ## Disclaimer
