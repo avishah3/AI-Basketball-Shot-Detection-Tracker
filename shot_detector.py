@@ -5,15 +5,17 @@ import cv2
 import cvzone
 import math
 import numpy as np
-from utils import score, detect_down, detect_up, in_hoop_region, clean_hoop_pos, clean_ball_pos
+from utils import score, detect_down, detect_up, in_hoop_region, clean_hoop_pos, clean_ball_pos, get_device, simulate_rebound_path
 
 
 class ShotDetector:
     def __init__(self):
         # Load the YOLO model created from main.py - change text to your relative path
         self.model = YOLO("best.pt")
+        # Model halving accelerates inference. If not required, please comment on this line
+        self.model.half()
         self.class_names = ['Basketball', 'Basketball Hoop']
-
+        self.device = get_device()
         # Uncomment line below to use webcam (I streamed to my iPhone using Iriun Webcam)
         # self.cap = cv2.VideoCapture(0)
 
@@ -50,7 +52,7 @@ class ShotDetector:
                 # End of the video or an error occurred
                 break
 
-            results = self.model(self.frame, stream=True)
+            results = self.model(self.frame, stream=True, device=self.device)
 
             for r in results:
                 boxes = r.boxes
@@ -129,10 +131,13 @@ class ShotDetector:
                         self.makes += 1
                         self.overlay_color = (0, 255, 0)
                         self.fade_counter = self.fade_frames
-
-                    # If it is a miss, put a red overlay
+                    # If it's a miss, check if it's a "rebound" shot after hitting the rim
+                    elif simulate_rebound_path(self.ball_pos, self.hoop_pos):  # Simulate rebound path
+                        self.makes += 1  # Count it as a make
+                        self.overlay_color = (0, 255, 0)  # Green for make
+                        self.fade_counter = self.fade_frames
                     else:
-                        self.overlay_color = (0, 0, 255)
+                        self.overlay_color = (0, 0, 255)  # Red for miss
                         self.fade_counter = self.fade_frames
 
     def display_score(self):
