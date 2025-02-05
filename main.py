@@ -1,4 +1,5 @@
 from ultralytics import YOLO
+from utils import get_device
 
 if __name__ == "__main__":
 
@@ -11,8 +12,14 @@ if __name__ == "__main__":
     # 4. Run this
     # 5. Go to runs/detect/train/weights and use best.pt as the model while running shot_detector.py
 
+    # Select device for training
+    device = get_device()
+
+    # If there is no pre-trained model, use YOLO's default
+    PRE_TRAINED_MODEL = 'Yolo-Weights/yolov8n.pt'
+
     # Load a model
-    model = YOLO('Yolo-Weights/yolov8n.pt')
+    model = YOLO(PRE_TRAINED_MODEL)
 
     # Train the model
-    results = model.train(data='config.yaml', epochs=100, imgsz=640)
+    results = model.train(data='config.yaml', epochs=100, imgsz=640, device=device)
