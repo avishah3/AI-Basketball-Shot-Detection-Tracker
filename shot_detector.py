@@ -130,8 +130,8 @@ class ShotDetector:
                     # If it is a make, put a green overlay and display "完美"
                     if score(self.ball_pos, self.hoop_pos):
                         self.makes += 1
-                        self.overlay_color = (0, 255, 0)  # Green for perfect
-                        self.overlay_text = "Perfect!"
+                        self.overlay_color = (0, 255, 0)  # Green for make
+                        self.overlay_text = "Make"
                         self.fade_counter = self.fade_frames
 
                     else:
