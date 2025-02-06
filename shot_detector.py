@@ -13,8 +13,10 @@ class ShotDetector:
         # Load the YOLO model created from main.py - change text to your relative path
         self.overlay_text = "Waiting..."
         self.model = YOLO("best.pt")
-        # Model halving accelerates inference. If not required, please comment on this line
-        self.model.half()
+        
+        # Uncomment this line to accelerate inference. Note that this may cause errors in some setups.
+        #self.model.half()
+        
         self.class_names = ['Basketball', 'Basketball Hoop']
         self.device = get_device()
         # Uncomment line below to use webcam (I streamed to my iPhone using Iriun Webcam)
