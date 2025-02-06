@@ -21,10 +21,10 @@ This project combines the power of Machine Learning and Computer Vision for the 
 ├── best.pt             # Pre-trained model
 ├── config.yaml         # Dataset configuration
 ├── main.py             # YoloV8 training script
-├── requirements.txt
-├── shot_detector.py    # Hit detection core program
-├── utils.py
-└── video_test_5.mp4    # Video for testing purposes
+├── requirements.txt    
+├── shot_detector.py    # Detection algorithm
+├── utils.py            # Helper functions
+└── video_test_5.mp4    # Test Video
 ```
 
 ## Model Training
