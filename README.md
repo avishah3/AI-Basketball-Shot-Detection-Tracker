@@ -18,7 +18,7 @@ This project combines the power of Machine Learning and Computer Vision for the 
 
 ```
 ├── README.md
-├── best.pt             # Trained model
+├── best.pt             # Pre-trained model
 ├── config.yaml         # Dataset configuration
 ├── main.py             # YoloV8 training script
 ├── requirements.txt
