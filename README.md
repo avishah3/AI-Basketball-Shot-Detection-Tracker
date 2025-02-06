@@ -46,7 +46,7 @@ A linear regression is used to predict the ball's trajectory based on its positi
 3. Follow the instructions in 'main.py' to train the model and prepare for shot detection.
 4. Run 'shot_detector.py' through your webcam or iPhone for real-time shot detection. Or input a video for shot detection analysis.
    
-*** If you don't want to train the model yourself, please use the pre-trained 'best.pt' model (skip steps 2 & 3) ***
+*** **If you don't want to train the model yourself, please use the pre-trained 'best.pt' model (skip steps 2 & 3)** ***
    
 Contributions to this project are welcome - submit a pull request. For issues or suggestions, open an issue in this repository.
 
