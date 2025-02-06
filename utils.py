@@ -1,5 +1,16 @@
 import math
 import numpy as np
+import torch
+
+def get_device():
+    """Automatically select devices -> mps（Mac） -> cpu"""
+    if torch.cuda.is_available():
+        device = 'cuda'
+    elif torch.backends.mps.is_available():
+        device = 'mps'
+    else:
+        device = 'cpu'
+    return device
 
 
 def score(ball_pos, hoop_pos):
@@ -12,20 +23,27 @@ def score(ball_pos, hoop_pos):
         if ball_pos[i][0][1] < rim_height:
             x.append(ball_pos[i][0][0])
             y.append(ball_pos[i][0][1])
-            x.append(ball_pos[i+1][0][0])
-            y.append(ball_pos[i+1][0][1])
+            if i + 1 < len(ball_pos):
+                x.append(ball_pos[i + 1][0][0])
+                y.append(ball_pos[i + 1][0][1])
             break
 
     # Create line from two points
     if len(x) > 1:
         m, b = np.polyfit(x, y, 1)
-        print(x, y)
-        # Checks if projected line fits between the ends of the rim {x = (y-b)/m}
-        predicted_x = ((hoop_pos[-1][0][1] - 0.5*hoop_pos[-1][3]) - b)/m
+        predicted_x = ((hoop_pos[-1][0][1] - 0.5 * hoop_pos[-1][3]) - b) / m
         rim_x1 = hoop_pos[-1][0][0] - 0.4 * hoop_pos[-1][2]
         rim_x2 = hoop_pos[-1][0][0] + 0.4 * hoop_pos[-1][2]
+
+        # Check if predicted path crosses the rim area (including rebound zone)
         if rim_x1 < predicted_x < rim_x2:
             return True
+        # Check if ball enters rebound zone near the hoop
+        hoop_rebound_zone = 10  # Define a buffer zone around the hoop
+        if rim_x1 - hoop_rebound_zone < predicted_x < rim_x2 + hoop_rebound_zone:
+            return True
+
+    return False
 
 
 # Detects if the ball is below the net - used to detect shot attempts
